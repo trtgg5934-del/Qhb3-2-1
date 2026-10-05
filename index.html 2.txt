@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لعبة الحمير 🫏</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Tajawal', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f0f2f5 0%, #e0e7ff 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 35px 25px;
+      border-radius: 24px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 450px;
+      width: 100%;
+      border: 2px solid #fff;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    h1 {
+      color: #1e293b;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      font-weight: 900;
+    }
+
+    p {
+      color: #475569;
+      font-size: 1.2rem;
+      margin-bottom: 25px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    .btn {
+      background: linear-gradient(45deg, #4f46e5, #6366f1);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
+      transition: all 0.3s ease;
+      flex: 1;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(79, 70, 229, 0.4);
+    }
+
+    /* تنسيق الحمير الثلاثة */
+    .donkeys-container {
+      display: flex;
+      justify-content: space-around;
+      margin: 25px 0;
+    }
+
+    .donkey-btn {
+      font-size: 65px;
+      background: #f1f5f9;
+      border: 2px solid #cbd5e1;
+      border-radius: 20px;
+      padding: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+
+    .donkey-btn:hover {
+      transform: scale(1.15);
+      background: #e2e8f0;
+      border-color: #6366f1;
+    }
+
+    .result-box {
+      background-color: #fef2f2;
+      border: 2px dashed #ef4444;
+      color: #991b1b;
+      font-size: 1.4rem;
+      font-weight: bold;
+      padding: 15px;
+      border-radius: 16px;
+      margin: 20px 0;
+      animation: popIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- المرحلة الأولى: الترحيب والسؤال -->
+  <div class="card" id="step1">
+    <h1>سلام عليكم اليوم عندنا لعبه الحمير 🫏</h1>
+    <p>انتي فاطمة ؟</p>
+    <div class="btn-group">
+      <button class="btn" onclick="nextStep()">اي</button>
+      <button class="btn" onclick="nextStep()">لا</button>
+    </div>
+  </div>
+
+  <!-- المرحلة الثانية: اختيار الحمار -->
+  <div class="card hidden" id="step2">
+    <h1>اكتشف من الحمار ف الصفحة ذي 🫏</h1>
+    
+    <div class="donkeys-container">
+      <!-- اليمين -->
+      <div class="donkey-btn" onclick="showResult('ادم فردان')">🫏</div>
+      <!-- النص -->
+      <div class="donkey-btn" onclick="showResult('سجاد سفن')">🫏</div>
+      <!-- اليسار -->
+      <div class="donkey-btn" onclick="showResult('قحب 3')">🫏</div>
+    </div>
+
+    <!-- مكان ظهور النتيجة -->
+    <div class="result-box hidden" id="resultBox"></div>
+
+    <button class="btn hidden" id="finishBtn" onclick="finishGame()">متابعة</button>
+  </div>
+
+  <!-- المرحلة الأخيرة: نهاية اللعبة -->
+  <div class="card hidden" id="step3">
+    <h1 style="font-size: 2.2rem; color: #dc2626;">انتهت اللعبه يلا اذلفو 😂😂</h1>
+  </div>
+
+  <script>
+    function nextStep() {
+      document.getElementById('step1').classList.add('hidden');
+      document.getElementById('step2').classList.remove('hidden');
+    }
+
+    function showResult(name) {
+      const resultBox = document.getElementById('resultBox');
+      const finishBtn = document.getElementById('finishBtn');
+      
+      resultBox.innerText = name;
+      resultBox.classList.remove('hidden');
+      finishBtn.classList.remove('hidden');
+    }
+
+    function finishGame() {
+      document.getElementById('step2').classList.add('hidden');
+      document.getElementById('step3').classList.remove('hidden');
+    }
+  </script>
+
+</body>
+</html>
